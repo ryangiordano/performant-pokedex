@@ -14,7 +14,6 @@ type PokedexAction = {
 export const initialState = { selectedPokemon: undefined };
 
 export const reducer = (state: PokedexState, action: PokedexAction) => {
-  debugger
   switch (action.type) {
     case "set-selected-pokemon":
       return { ...state, selectedPokemon: action.selectedPokemon };
