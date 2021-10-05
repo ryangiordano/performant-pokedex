@@ -4,27 +4,30 @@ import DisplayList from "./display-list/DisplayList";
 import DisplayScreen from "./display-screen/DisplayScreen";
 import { reducer, initialState } from "../../state/index";
 import PokemonService from "../../services/PokemonService";
+import TopScreen from "./display-screen/TopScreen";
 
 function Pokedex({}: {}) {
   const [state, dispatch] = useReducer(reducer, initialState);
+  console.log(state);
   React.useEffect(() => {
+    //TODO: Set this to query via generation;
     async function getInitialData() {
-      const d = await PokemonService.getPokemonByName("golduck");
-      dispatch({ type: "set-pokemon-list", pokemonList: [d] });
+      const d = await PokemonService.getPokemonsList({ offset: 0, limit: 151 });
+      console.log(d);
+      dispatch({ type: "set-pokemon-list", pokemonList: d.results });
     }
     getInitialData();
   }, []);
-  console.log(state)
   return (
     <div style={{}}>
-      <DisplayScreen selectedPokemon={state.selectedPokemon} />
+      <TopScreen selectedPokemon={state.selectedPokemon} />
       <Dashboard />
       <DisplayList
-        //TODO
         pokemonList={state.pokemonList ? [...state.pokemonList] : []}
-        onSelectPokemon={(selectedPokemon) =>
-          dispatch({ type: "set-selected-pokemon", selectedPokemon })
-        }
+        onSelectPokemon={async (selectedPokemon) => {
+          const p = await PokemonService.getPokemonByName(selectedPokemon.name);
+          return dispatch({ type: "set-selected-pokemon", selectedPokemon: p });
+        }}
       />
     </div>
   );
