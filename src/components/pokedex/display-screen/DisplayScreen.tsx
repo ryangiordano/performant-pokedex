@@ -1,24 +1,13 @@
 import React from "react";
+import Flex from "../../../patterns/Flex";
 
 function DisplayScreen({ selectedPokemon }: { selectedPokemon?: PokemonType }) {
   return (
-    <>
-      <div
-        style={{
-          height: "200px",
-          border: "3px solid black",
-          borderRadius: "5px",
-          flex: 1,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        {selectedPokemon && (
-          <img src={selectedPokemon.sprites.front_default} height={"100%"} />
-        )}
-      </div>
-    </>
+    <Flex flex={1} justifyContent="center" alignItems="center" height="100%">
+      {selectedPokemon && (
+        <img height="100%" src={selectedPokemon.sprites.front_default} />
+      )}
+    </Flex>
   );
 }
 export default DisplayScreen;
