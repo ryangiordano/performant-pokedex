@@ -1,25 +1,34 @@
 import React from "react";
+import { css } from "styled-components";
 import Box from "../../../patterns/Box";
 
 function DisplayListItem({
   name,
   onClick,
-  onMouseEnter,
-  hovered,
   selected,
 }: {
   name: string;
   onClick: () => void;
-  onMouseEnter?: () => void;
-  hovered: boolean;
   selected: boolean;
 }) {
+  const [hovered, setHovered] = React.useState(false);
   return (
     <Box
+      className="list-group-item"
       as="li"
-      // textDecoration={"none"}
       onClick={onClick}
-      onMouseEnter={onMouseEnter}
+      onMouseEnter={() => {
+        setHovered(true);
+      }}
+      onMouseLeave={() => {
+        setHovered(false);
+      }}
+      backgroundColor={selected ? "blue" : hovered ? "light_blue" : "white"}
+      textAlign="left"
+      style={{
+        listStyle: "none",
+        cursor: "pointer",
+      }}
     >
       {name}
     </Box>

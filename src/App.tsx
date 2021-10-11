@@ -13,7 +13,6 @@ function App() {
           height: "100vh",
           marginLeft: "auto",
           marginRight: "auto",
-          backgroundColor: "#f5f5f5",
         }}
       >
         <Pokedex />

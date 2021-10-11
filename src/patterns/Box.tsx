@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+
 import {
   border,
   BorderProps,
@@ -21,7 +22,7 @@ export interface BoxProps
     SpaceProps,
     ColorProps,
     TypographyProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 const Box = styled.div<BoxProps>(
