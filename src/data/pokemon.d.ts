@@ -1,25 +1,27 @@
+declare type TypeValue =
+  | "flying"
+  | "fire"
+  | "water"
+  | "fairy"
+  | "fighting"
+  | "electric"
+  | "ice"
+  | "rock"
+  | "ground"
+  | "steel"
+  | "normal"
+  | "poison"
+  | "ghost"
+  | "dragon"
+  | "dark"
+  | "grass"
+  | "bug"
+  | "psychic";
+
 declare type Type = {
   slot: 1 | 2;
   type: {
-    name:
-      | "flying"
-      | "fire"
-      | "water"
-      | "fairy"
-      | "fighting"
-      | "electric"
-      | "ice"
-      | "rock"
-      | "ground"
-      | "steel"
-      | "normal"
-      | "poison"
-      | "ghost"
-      | "dragon"
-      | "dark"
-      | "grass"
-      | "bug"
-      | "psychic";
+    name: TypeValue;
   };
 };
 

@@ -5,9 +5,18 @@ import DashboardSearch from "./DashboardSearch";
 
 function Dashboard({}: {}) {
   return (
-    <Flex mb="large" bg="light_red" borderRadius="small" width="100%" p="large">
+    <Flex
+      mb="large"
+      bg="light_red"
+      borderRadius="small"
+      alignItems="center"
+      justifyContent="space-between"
+      width="100%"
+      p="large"
+      as="fieldset"
+    >
+      <DashboardSearch />
       <DashboardFilter />
-      <DashboardSearch></DashboardSearch>
     </Flex>
   );
 }

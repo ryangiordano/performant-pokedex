@@ -17,6 +17,10 @@ function TopScreen({ selectedPokemon }: { selectedPokemon?: PokemonType }) {
         borderColor="black"
         borderTopLeftRadius="small"
         borderBottomLeftRadius="small"
+        style={{
+          background:
+            "linear-gradient(90deg, rgba(238,238,238,1) 0%, rgba(231,231,231,1) 35%, rgba(196,196,196,1) 100%)",
+        }}
       ></Box>
       <Flex
         width="80%"
@@ -24,6 +28,10 @@ function TopScreen({ selectedPokemon }: { selectedPokemon?: PokemonType }) {
         borderColor="black"
         borderRadius="small"
         backgroundColor="black"
+        style={{
+          background:
+            "linear-gradient(273deg, rgba(91,91,91,1) 0%, rgba(124,124,124,1) 48%, rgba(119,119,119,1) 100%)",
+        }}
         p="huge"
       >
         <Flex width="100%" bg="white" borderRadius="small">
@@ -44,6 +52,10 @@ function TopScreen({ selectedPokemon }: { selectedPokemon?: PokemonType }) {
         borderColor="black"
         borderTopRightRadius="small"
         borderBottomRightRadius="small"
+        style={{
+          background:
+            "linear-gradient(273deg, rgba(238,238,238,1) 0%, rgba(231,231,231,1) 35%, rgba(196,196,196,1) 100%)",
+        }}
       ></Box>
     </Flex>
   );
