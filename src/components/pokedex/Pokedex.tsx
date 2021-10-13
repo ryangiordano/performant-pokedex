@@ -7,6 +7,10 @@ import PokemonService from "../../services/PokemonService";
 import TopScreen from "./display-screen/TopScreen";
 import Box from "../../patterns/Box";
 
+
+// Create a context to manage state
+
+
 function Pokedex({}: {}) {
   const [state, dispatch] = useReducer(reducer, initialState);
   React.useEffect(() => {
