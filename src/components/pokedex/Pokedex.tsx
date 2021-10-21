@@ -21,22 +21,32 @@ function Pokedex({}: {}) {
     getInitialData();
   }, []);
 
+  const pokemonList = React.useMemo(() => {
+    return state.pokemonList || [];
+  }, [state.pokemonList]);
+
+  const selectedPokemon = React.useMemo(() => {
+    return state.selectedPokemon;
+  }, [state.selectedPokemon]);
+
+  const onSelectPokemon = React.useCallback(async (selectedPokemon) => {
+    const p = await PokemonService.getPokemonByName(selectedPokemon.name);
+    return dispatch({
+      type: "set-selected-pokemon",
+      selectedPokemon: p,
+    });
+  }, []);
   return (
-    <Box bg="red" borderRadius="small" p="huge" mt="auto" mb="auto" style={{}}>
+    <Box bg="red" borderRadius="small" p="huge" mt="auto" mb="auto">
       <TopScreen selectedPokemon={state.selectedPokemon} />
       <Dashboard />
       <DisplayList
-        pokemonList={state.pokemonList ? [...state.pokemonList] : []}
-        selectedPokemon={state.selectedPokemon}
-        onSelectPokemon={async (selectedPokemon) => {
-          const p = await PokemonService.getPokemonByName(selectedPokemon.name);
-          return dispatch({
-            type: "set-selected-pokemon",
-            selectedPokemon: p,
-          });
-        }}
+        pokemonList={pokemonList}
+        selectedPokemon={selectedPokemon}
+        onSelectPokemon={onSelectPokemon}
       />
     </Box>
   );
 }
-export default Pokedex;
+
+export default React.memo(Pokedex);

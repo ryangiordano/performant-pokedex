@@ -27,4 +27,5 @@ function DisplayList({
     </Box>
   );
 }
-export default DisplayList;
+
+export default React.memo(DisplayList);
