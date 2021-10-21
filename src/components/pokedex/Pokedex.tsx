@@ -1,18 +1,17 @@
-import React, { useReducer } from "react";
+import React from "react";
 import Dashboard from "./dashboard/Dashboard";
 import DisplayList from "./display-list/DisplayList";
 import DisplayScreen from "./display-screen/DisplayScreen";
-import { reducer, initialState } from "../../state/index";
 import PokemonService from "../../services/PokemonService";
 import TopScreen from "./display-screen/TopScreen";
 import Box from "../../patterns/Box";
-
+import { PokedexStateContext } from "../../state/PokedexStateContext";
 
 // Create a context to manage state
 
-
 function Pokedex({}: {}) {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const { state, dispatch } = React.useContext(PokedexStateContext);
+
   React.useEffect(() => {
     //TODO: Set this to query via generation;
     async function getInitialData() {
@@ -21,6 +20,7 @@ function Pokedex({}: {}) {
     }
     getInitialData();
   }, []);
+
   return (
     <Box bg="red" borderRadius="small" p="huge" mt="auto" mb="auto" style={{}}>
       <TopScreen selectedPokemon={state.selectedPokemon} />
@@ -30,7 +30,10 @@ function Pokedex({}: {}) {
         selectedPokemon={state.selectedPokemon}
         onSelectPokemon={async (selectedPokemon) => {
           const p = await PokemonService.getPokemonByName(selectedPokemon.name);
-          return dispatch({ type: "set-selected-pokemon", selectedPokemon: p });
+          return dispatch({
+            type: "set-selected-pokemon",
+            selectedPokemon: p,
+          });
         }}
       />
     </Box>

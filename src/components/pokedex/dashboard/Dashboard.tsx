@@ -3,7 +3,7 @@ import Flex from "../../../patterns/Flex";
 import DashboardFilter from "./DashboardFilter";
 import DashboardSearch from "./DashboardSearch";
 
-function Dashboard({}: {}) {
+function Dashboard() {
   return (
     <Flex
       mb="large"

@@ -1,3 +1,4 @@
+import React from "react";
 import { useReducer } from "react";
 
 export type PokedexState = {
@@ -9,7 +10,7 @@ export type PokedexState = {
   generation?: number;
 };
 
-type PokedexAction = {
+export type PokedexAction = {
   type:
     | "set-selected-pokemon"
     | "set-pokemon-list"
@@ -50,3 +51,4 @@ export const reducer = (state: PokedexState, action: PokedexAction) => {
       throw new Error("State not available");
   }
 };
+
