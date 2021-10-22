@@ -1,10 +1,12 @@
 import React, { useReducer } from "react";
 import { initialState, PokedexAction, PokedexState, reducer } from ".";
 
-export const PokedexStateContext = React.createContext<{
+export type PokedexContextType = {
   state: PokedexState;
   dispatch: React.Dispatch<PokedexAction>;
-}>({
+};
+
+export const PokedexStateContext = React.createContext<PokedexContextType>({
   state: {
     selectedPokemon: undefined,
     pokemonList: [],

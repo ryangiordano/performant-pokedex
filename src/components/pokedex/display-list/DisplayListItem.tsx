@@ -8,7 +8,7 @@ function DisplayListItem({
   selected,
 }: {
   name: string;
-  onClick: () => void;
+  onClick: (name: string) => void;
   selected: boolean;
 }) {
   const [hovered, setHovered] = React.useState(false);
@@ -16,7 +16,9 @@ function DisplayListItem({
     <Box
       className="list-group-item"
       as="li"
-      onClick={onClick}
+      onClick={() => {
+        onClick(name);
+      }}
       onMouseEnter={() => {
         setHovered(true);
       }}
@@ -34,4 +36,4 @@ function DisplayListItem({
     </Box>
   );
 }
-export default DisplayListItem;
+export default React.memo(DisplayListItem);
