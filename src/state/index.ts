@@ -1,6 +1,3 @@
-import React from "react";
-import { useReducer } from "react";
-
 export type PokedexState = {
   selectedPokemon?: PokemonType;
   pokemonList?: PokemonType[];
@@ -46,7 +43,11 @@ export const reducer = (state: PokedexState, action: PokedexAction) => {
         ...state,
         filterType2: action.filterType2,
       };
-
+    case "set-generation":
+      return {
+        ...state,
+        generation: action.generation,
+      };
     default:
       throw new Error("State not available");
   }

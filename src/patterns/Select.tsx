@@ -28,9 +28,6 @@ function Select({
           onChange(e.target.value as TypeValue);
         }}
       >
-        <option disabled selected value={""}>
-          {placeholder}
-        </option>
         {children}
       </select>
       {value && nullable && (

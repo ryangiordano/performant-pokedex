@@ -26,7 +26,9 @@ function GenerationSelect({
         placeholder="Generation"
       >
         {[1, 2, 3, 4, 5, 6, 7, 8].map((g) => (
-          <option value={g}>{g}</option>
+          <option key={g} value={g}>
+            {g}
+          </option>
         ))}
       </Select>
     </Box>

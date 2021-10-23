@@ -10,7 +10,7 @@ function DashboardFilter({}: {}) {
 
   return (
     <>
-      <Flex flex="1" mr="medium" alignItems="center">
+      {/* <Flex flex="1" mr="medium" alignItems="center">
         <Box
           as="label"
           htmlFor="type-1"
@@ -48,6 +48,7 @@ function DashboardFilter({}: {}) {
           id="type-2"
         />
       </Flex>
+      */}
       <Flex flex="1" mr="medium" alignItems="center">
         <Box
           as="label"
