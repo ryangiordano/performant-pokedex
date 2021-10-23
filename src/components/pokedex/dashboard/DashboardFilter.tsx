@@ -1,13 +1,13 @@
 import React from "react";
 import Box from "../../../patterns/Box";
 import Flex from "../../../patterns/Flex";
+import { PokedexStateContext } from "../../../state/PokedexStateContext";
 import GenerationSelect from "./GenerationSelect";
 import TypeSelect from "./TypeSelect";
 
 function DashboardFilter({}: {}) {
-  const [type1, setType1] = React.useState<TypeValue | "">("");
-  const [type2, setType2] = React.useState<TypeValue | "">("");
-  const [generation, setGeneration] = React.useState<number | null>(null);
+  const { state, dispatch } = React.useContext(PokedexStateContext);
+
   return (
     <>
       <Flex flex="1" mr="medium" alignItems="center">
@@ -21,8 +21,10 @@ function DashboardFilter({}: {}) {
           Type 1
         </Box>
         <TypeSelect
-          onChange={(type) => setType1(type)}
-          value={type1 ?? ""}
+          onChange={(type) =>
+            dispatch({ type: "set-type-1", filterType1: type || undefined })
+          }
+          value={state.filterType1 ?? ""}
           placeholder="Type 1"
           id="type-1"
         />
@@ -38,8 +40,10 @@ function DashboardFilter({}: {}) {
           Type 2
         </Box>
         <TypeSelect
-          onChange={(type) => setType2(type)}
-          value={type2 ?? ""}
+          onChange={(type) =>
+            dispatch({ type: "set-type-2", filterType2: type || undefined })
+          }
+          value={state.filterType2 ?? ""}
           placeholder="Type 2"
           id="type-2"
         />
@@ -55,8 +59,13 @@ function DashboardFilter({}: {}) {
           Generation
         </Box>
         <GenerationSelect
-          onChange={(generation) => setGeneration(generation)}
-          value={generation}
+          onChange={(generation) =>
+            dispatch({
+              type: "set-generation",
+              generation: generation ?? undefined,
+            })
+          }
+          value={state.generation ?? null}
           id="generation"
         />
       </Flex>

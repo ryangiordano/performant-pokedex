@@ -15,8 +15,7 @@ function DisplayList({
   onSelectPokemon: (selectedPokemon: PokemonType) => void;
   selectedPokemon?: PokemonType;
 }) {
-  const { state, dispatch } =
-    React.useContext<PokedexContextType>(PokedexStateContext);
+  const { state } = React.useContext<PokedexContextType>(PokedexStateContext);
   const handleClick = React.useCallback(
     (name: string) => {
       const pokemon = pokemonList.find((p) => p.name === name);
@@ -30,7 +29,6 @@ function DisplayList({
   const filteredPokemonList = React.useMemo(() => {
     return pokemonList.filter((p) => p.name.includes(state.searchValue ?? ""));
   }, [pokemonList, state.searchValue, state.filterType1, state.filterType2]);
-
   return (
     <Box maxHeight="500px" overflowY="scroll">
       <Box as="ul" p="0" m="0" className="list-group">

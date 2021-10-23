@@ -36,19 +36,18 @@ export const reducer = (state: PokedexState, action: PokedexAction) => {
       return { ...state, pokemonList: action.pokemonList };
     case "set-search-value":
       return { ...state, searchValue: action.searchValue };
-    case "set-search-value":
-      const filteredList = action.searchValue
-        ? action.pokemonList?.filter((p) =>
-            p.name.includes(action.searchValue as string)
-          )
-        : action.pokemonList;
+    case "set-type-1":
       return {
         ...state,
-        pokemonList: filteredList,
-        searchValue: action.searchValue,
+        filterType1: action.filterType1,
       };
+    case "set-type-2":
+      return {
+        ...state,
+        filterType2: action.filterType2,
+      };
+
     default:
       throw new Error("State not available");
   }
 };
-

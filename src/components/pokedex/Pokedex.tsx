@@ -15,7 +15,7 @@ function Pokedex({}: {}) {
   React.useEffect(() => {
     //TODO: Set this to query via generation;
     async function getInitialData() {
-      const d = await PokemonService.getPokemonsList({ offset: 0, limit: 151 });
+      const d = await PokemonService.getPokemonsList({ offset: 0, limit: 1000 });
       dispatch({ type: "set-pokemon-list", pokemonList: d.results });
     }
     getInitialData();
