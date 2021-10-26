@@ -7,18 +7,6 @@ import DashboardSearch from "./DashboardSearch";
 function Dashboard() {
   const { state, dispatch } = React.useContext(PokedexStateContext);
 
-  const handleChangeSearchValue = React.useCallback(
-    (value: string) =>
-      dispatch({ type: "set-search-value", searchValue: value }),
-    [dispatch]
-  );
-
-  const handleChangeGeneration = React.useCallback(
-    (value?: number | null) =>
-      dispatch({ type: "set-generation", generation: value ?? 1 }),
-    [dispatch]
-  );
-
   return (
     <Flex
       mb="large"
@@ -32,11 +20,15 @@ function Dashboard() {
     >
       <DashboardSearch
         searchValue={state.searchValue}
-        onChange={handleChangeSearchValue}
+        onChange={(value: string) =>
+          dispatch({ type: "set-search-value", searchValue: value })
+        }
       />
       <DashboardFilter
         generation={state.generation}
-        onChange={handleChangeGeneration}
+        onChange={(value?: number | null) =>
+          dispatch({ type: "set-generation", generation: value ?? 1 })
+        }
       />
     </Flex>
   );

@@ -29,4 +29,4 @@ function DashboardFilter({
     </Flex>
   );
 }
-export default React.memo(DashboardFilter);
+export default DashboardFilter;

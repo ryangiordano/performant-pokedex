@@ -60,4 +60,4 @@ function TopScreen({ selectedPokemon }: { selectedPokemon?: PokemonType }) {
     </Flex>
   );
 }
-export default React.memo(TopScreen);
+export default TopScreen;

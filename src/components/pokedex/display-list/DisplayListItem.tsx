@@ -6,12 +6,15 @@ function DisplayListItem({
   name,
   onClick,
   selected,
+  highlighted,
+  setHighlighted,
 }: {
   name: string;
   onClick: (name: string) => void;
   selected: boolean;
+  highlighted: boolean;
+  setHighlighted: (name: string) => void;
 }) {
-  const [hovered, setHovered] = React.useState(false);
   return (
     <Box
       className="list-group-item"
@@ -20,12 +23,12 @@ function DisplayListItem({
         onClick(name);
       }}
       onMouseEnter={() => {
-        setHovered(true);
+        setHighlighted(name);
       }}
       onMouseLeave={() => {
-        setHovered(false);
+        setHighlighted(name);
       }}
-      backgroundColor={selected ? "blue" : hovered ? "light_blue" : "white"}
+      backgroundColor={selected ? "blue" : highlighted ? "light_blue" : "white"}
       textAlign="left"
       style={{
         listStyle: "none",
@@ -36,4 +39,4 @@ function DisplayListItem({
     </Box>
   );
 }
-export default React.memo(DisplayListItem);
+export default DisplayListItem;
