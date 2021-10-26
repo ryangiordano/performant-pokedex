@@ -16,7 +16,6 @@ function DisplayList({
   selectedPokemon?: PokemonType;
 }) {
   const { state } = React.useContext<PokedexContextType>(PokedexStateContext);
-  const [highlighted, setHighlighted] = React.useState("");
 
   const filteredPokemonList = pokemonList.filter((p) =>
     p.name.includes(state.searchValue ?? "")
@@ -28,10 +27,6 @@ function DisplayList({
         {filteredPokemonList.map((pokemon) => (
           <DisplayListItem
             name={pokemon.name}
-            highlighted={highlighted === pokemon.name}
-            setHighlighted={() => {
-              setHighlighted(pokemon.name);
-            }}
             selected={selectedPokemon?.name === pokemon.name}
             onClick={(name: string) => {
               const pokemon = pokemonList.find((p) => p.name === name);

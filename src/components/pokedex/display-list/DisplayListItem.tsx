@@ -6,15 +6,12 @@ function DisplayListItem({
   name,
   onClick,
   selected,
-  highlighted,
-  setHighlighted,
 }: {
   name: string;
   onClick: (name: string) => void;
   selected: boolean;
-  highlighted: boolean;
-  setHighlighted: (name: string) => void;
 }) {
+  const [highlighted, setHighlighted] = React.useState(false);
   return (
     <Box
       className="list-group-item"
@@ -23,10 +20,10 @@ function DisplayListItem({
         onClick(name);
       }}
       onMouseEnter={() => {
-        setHighlighted(name);
+        setHighlighted(true);
       }}
       onMouseLeave={() => {
-        setHighlighted(name);
+        setHighlighted(false);
       }}
       backgroundColor={selected ? "blue" : highlighted ? "light_blue" : "white"}
       textAlign="left"
