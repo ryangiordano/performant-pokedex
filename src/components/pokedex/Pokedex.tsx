@@ -22,14 +22,6 @@ function Pokedex({}: {}) {
     getInitialData();
   }, [state.generation]);
 
-  const pokemonList = React.useMemo(() => {
-    return state.pokemonList || [];
-  }, [state.pokemonList]);
-
-  const selectedPokemon = React.useMemo(() => {
-    return state.selectedPokemon;
-  }, [state.selectedPokemon]);
-
   const onSelectPokemon = React.useCallback(async (selectedPokemon) => {
     const p = await PokemonService.getPokemonByName(selectedPokemon.name);
     return dispatch({
@@ -37,13 +29,14 @@ function Pokedex({}: {}) {
       selectedPokemon: p,
     });
   }, []);
+
   return (
     <Box bg="red" borderRadius="small" p="huge" mt="auto" mb="auto">
       <TopScreen selectedPokemon={state.selectedPokemon} />
       <Dashboard />
       <DisplayList
-        pokemonList={pokemonList}
-        selectedPokemon={selectedPokemon}
+        pokemonList={state.pokemonList ?? []}
+        selectedPokemon={state.selectedPokemon}
         onSelectPokemon={onSelectPokemon}
       />
     </Box>

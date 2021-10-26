@@ -10,4 +10,4 @@ function DisplayScreen({ selectedPokemon }: { selectedPokemon?: PokemonType }) {
     </Flex>
   );
 }
-export default DisplayScreen;
+export default React.memo(DisplayScreen);

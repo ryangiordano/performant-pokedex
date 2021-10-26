@@ -8,7 +8,7 @@ function GenerationSelect({
   id,
 }: {
   value: number | null;
-  onChange: (generation: number | null) => void;
+  onChange: (generation?: number | null) => void;
   id: string;
 }) {
   return (

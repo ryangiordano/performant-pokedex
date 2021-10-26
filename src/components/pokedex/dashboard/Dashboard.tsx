@@ -1,9 +1,24 @@
 import React from "react";
 import Flex from "../../../patterns/Flex";
+import { PokedexStateContext } from "../../../state/PokedexStateContext";
 import DashboardFilter from "./DashboardFilter";
 import DashboardSearch from "./DashboardSearch";
 
 function Dashboard() {
+  const { state, dispatch } = React.useContext(PokedexStateContext);
+
+  const handleChangeSearchValue = React.useCallback(
+    (value: string) =>
+      dispatch({ type: "set-search-value", searchValue: value }),
+    [dispatch]
+  );
+
+  const handleChangeGeneration = React.useCallback(
+    (value?: number | null) =>
+      dispatch({ type: "set-generation", generation: value ?? 1 }),
+    [dispatch]
+  );
+
   return (
     <Flex
       mb="large"
@@ -15,8 +30,14 @@ function Dashboard() {
       p="large"
       as="fieldset"
     >
-      <DashboardSearch />
-      <DashboardFilter />
+      <DashboardSearch
+        searchValue={state.searchValue}
+        onChange={handleChangeSearchValue}
+      />
+      <DashboardFilter
+        generation={state.generation}
+        onChange={handleChangeGeneration}
+      />
     </Flex>
   );
 }

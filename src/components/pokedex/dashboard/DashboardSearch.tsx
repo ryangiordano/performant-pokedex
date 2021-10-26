@@ -3,8 +3,19 @@ import Box from "../../../patterns/Box";
 import Flex from "../../../patterns/Flex";
 import { PokedexStateContext } from "../../../state/PokedexStateContext";
 
-function DashboardSearch() {
-  const { state, dispatch } = React.useContext(PokedexStateContext);
+function DashboardSearch({
+  searchValue,
+  onChange,
+}: {
+  searchValue?: string;
+  onChange: (value: string) => void;
+}) {
+  const handleChange = React.useCallback(
+    (e) => {
+      onChange(e.target.value);
+    },
+    [onChange]
+  );
   return (
     <Flex flex="2" mr="medium" alignItems="center">
       <Box as="label" htmlFor="filter" mr="medium" color="white">
@@ -15,13 +26,11 @@ function DashboardSearch() {
         id="filter"
         type="text"
         className="form-control"
-        value={state.searchValue}
+        value={searchValue}
         style={{ backgroundColor: "white", display: "inline-block" }}
-        onChange={(e) => {
-          dispatch({ type: "set-search-value", searchValue: e.target.value });
-        }}
+        onChange={handleChange}
       />
     </Flex>
   );
 }
-export default DashboardSearch;
+export default React.memo(DashboardSearch);
