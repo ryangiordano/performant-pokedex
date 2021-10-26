@@ -36,6 +36,7 @@ function DisplayList({
       <Box as="ul" p="0" m="0" className="list-group">
         {filteredPokemonList.map((pokemon) => (
           <DisplayListItem
+            key={pokemon.name}
             name={pokemon.name}
             selected={selectedPokemon?.name === pokemon.name}
             onClick={handleClick}
