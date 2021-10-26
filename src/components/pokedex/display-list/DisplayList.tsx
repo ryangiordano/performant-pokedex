@@ -21,6 +21,16 @@ function DisplayList({
     p.name.includes(state.searchValue ?? "")
   );
 
+  const handleClick = React.useCallback(
+    (name: string) => {
+      const pokemon = pokemonList.find((p) => p.name === name);
+      if (pokemon) {
+        onSelectPokemon(pokemon);
+      }
+    },
+    [pokemonList, onSelectPokemon]
+  );
+
   return (
     <Box maxHeight="500px" overflowY="scroll">
       <Box as="ul" p="0" m="0" className="list-group">
@@ -28,12 +38,7 @@ function DisplayList({
           <DisplayListItem
             name={pokemon.name}
             selected={selectedPokemon?.name === pokemon.name}
-            onClick={(name: string) => {
-              const pokemon = pokemonList.find((p) => p.name === name);
-              if (pokemon) {
-                onSelectPokemon(pokemon);
-              }
-            }}
+            onClick={handleClick}
           />
         ))}
       </Box>

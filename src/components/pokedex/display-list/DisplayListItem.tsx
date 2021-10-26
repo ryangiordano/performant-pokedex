@@ -36,4 +36,4 @@ function DisplayListItem({
     </Box>
   );
 }
-export default DisplayListItem;
+export default React.memo(DisplayListItem);
