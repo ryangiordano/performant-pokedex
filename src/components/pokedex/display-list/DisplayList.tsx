@@ -17,9 +17,9 @@ function DisplayList({
 }) {
   const { state } = React.useContext<PokedexContextType>(PokedexStateContext);
 
-  const filteredPokemonList = pokemonList.filter((p) =>
-    p.name.includes(state.searchValue ?? "")
-  );
+  const filteredPokemonList = React.useMemo(() => {
+    return pokemonList.filter((p) => p.name.includes(state.searchValue ?? ""));
+  }, [pokemonList, state.searchValue]);
 
   const handleClick = React.useCallback(
     (name: string) => {
